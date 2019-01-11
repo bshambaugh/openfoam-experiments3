@@ -1,0 +1,68 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volSymmTensorField;
+    location    "4";
+    object      R;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform (0.432 0 0 0.432 0 0.432);
+
+boundaryField
+{
+    inletFace
+    {
+        type            zeroGradient;
+    }
+    inlet
+    {
+        type            fixedValue;
+        value           uniform (0.432 0 0 0.432 0 0.432);
+    }
+    inletWalls
+    {
+        type            kqRWallFunction;
+        value           uniform (0.432 0 0 0.432 0 0.432);
+    }
+    outletInlet
+    {
+        type            cyclicAMI;
+        value           uniform (0.432 0 0 0.432 0 0.432);
+    }
+    fineSymmetryWall
+    {
+        type            symmetryPlane;
+    }
+    fineWalls
+    {
+        type            kqRWallFunction;
+        value           uniform (0.432 0 0 0.432 0 0.432);
+    }
+    fineCyclicBoundary
+    {
+        type            zeroGradient;
+    }
+    fineplug
+    {
+        type            cyclicAMI;
+        value           uniform (0.432 0 0 0.432 0 0.432);
+    }
+    faceFine
+    {
+        type            zeroGradient;
+    }
+}
+
+
+// ************************************************************************* //
